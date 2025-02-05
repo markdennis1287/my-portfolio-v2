@@ -15,11 +15,17 @@ const Navbar = () => {
 
   const scrollToSection = (id, event) => {
     event.preventDefault();
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+    if (window.location.pathname !== "/") {
+      // If not on the home page, navigate to the home page first
+      window.location.href = `/#${id}`;
+    } else {
+      // If on the home page, scroll to the section
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+      updateActiveBox(event.target);
     }
-    updateActiveBox(event.target);
     setMenuOpen(false);
   };
 
@@ -55,14 +61,17 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">
+      <div className="logo">
+        <a href="#home" onClick={(e) => scrollToSection("home", e)}>
           <img src="/logo.png" alt="Logo" />
-        </div>
+        </a>
+      </div>
+
 
         <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FiX /> : <FiMenu />}
         </div>
-
+        <div className="navbox">
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           {navItems.map(({ label, id }) => (
             <li key={id}>
@@ -77,7 +86,7 @@ const Navbar = () => {
           ))}
           <div className="active-box" ref={activeBox}></div>
         </ul>
-
+        </div>
         <button className="contact-button" onClick={(e) => scrollToSection("contact", e)}>
           Contact
         </button>

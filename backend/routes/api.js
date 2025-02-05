@@ -1,15 +1,37 @@
 const express = require('express');
+const axios = require('axios');
+const Parser = require('rss-parser');
+const cheerio = require('cheerio');
 const router = express.Router();
 
-// Example data
 const projects = [
-  { id: 1, name: 'Project 1', description: 'Description of Project 1' },
-  { id: 2, name: 'Project 2', description: 'Description of Project 2' },
-];
-
-const blogs = [
-  { id: 1, title: 'Blog 1', content: 'Content of Blog 1' },
-  { id: 2, title: 'Blog 2', content: 'Content of Blog 2' },
+  {
+    id: 1,
+    name: 'Customer Segmentation',
+    description: 'Still in development project for clustering customers that have demographic similarities.',
+    image: '/customer-seg.png',
+    githubLink: 'https://github.com/markdennis1287/Customer-Segmentation',
+    liveLink: 'https://customer-segmentation-o8ml.onrender.com',
+    tags: ['Python', 'Data Analysis', 'Machine Learning'],
+  },
+  {
+    id: 2,
+    name: 'My First Portfolio',
+    description: 'This was my first portfolio website that I built and my first project using React.',
+    image: '/my-portfolio.png',
+    githubLink: 'https://github.com/markdennis1287/my-portfolio',
+    liveLink: 'https://dennismiringu.vercel.app/',
+    tags: ['React', 'Node.js', ' Tailwind CSS'],
+  },
+  {
+    id: 3,
+    name: 'Project 3',
+    description: 'Description of Project 3',
+    image: '/my-portfolio.jpg',
+    githubLink: 'https://github.com/yourusername/project3',
+    liveLink: 'https://project3.com',
+    tags: ['Python', 'Data Analysis', 'Machine Learning'],
+  },
 ];
 
 
@@ -18,15 +40,37 @@ router.get('/projects', (req, res) => {
 });
 
 
-router.get('/blogs', (req, res) => {
+
+const parser = new Parser();
+
+const fetchMediumBlogs = async () => {
+  const mediumRSSUrl = 'https://medium.com/feed/@dennismiringu';
+  try {
+    const feed = await parser.parseURL(mediumRSSUrl);
+    return feed.items.map((item, index) => {
+      const $ = cheerio.load(item['content:encoded']);
+      const imageUrl = $('img').first().attr('src') || '/default-blog-image.jpg';
+      const tags = item.categories || [];
+      return {
+        id: index + 1,
+        title: item.title,
+        description: item.contentSnippet,
+        link: item.link,
+        pubDate: item.pubDate,
+        image: imageUrl,
+        tags: tags,
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching Medium blogs:', error);
+    return [];
+  }
+};
+
+router.get('/blogs', async (req, res) => {
+  const blogs = await fetchMediumBlogs();
   res.json(blogs);
 });
 
-
-router.post('/contact', (req, res) => {
-  const { name, email, message } = req.body;
-  console.log('Contact form submission:', { name, email, message });
-  res.status(200).json({ message: 'Message received!' });
-});
 
 module.exports = router;
