@@ -34,6 +34,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative; /* Make the nav-container the reference for the active-box */
 }
 
 .logo {
@@ -67,7 +68,6 @@ body {
   background-color: transparent;
   margin: 0;
   padding: 0;
-  position: relative; /* Ensure the active box is positioned relative to this container */
 }
 
 .nav-links li {
@@ -671,57 +671,255 @@ body {
   color: #f5f7f6;
 }
 
+/* Contact Section */
 .contact {
   padding: 6rem 0;
   background-color: #121212;
   color: #e0e0e0;
+  text-align: left; /* Center-align all text */
 }
 
-.contact form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.contact form input,
-.contact form textarea {
+.contact .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 4px;
+  color: #1abc9c;
+}
+
+.contact .section-subtitle {
+  font-size: 1.25rem;
+  color: #a0a0a0;
+  margin-bottom: 3rem;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-info {
+  max-width: 400px;
+  text-align: left; /* Center-align contact info */
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1abc9c;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  color: #a0a0a0;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-links {
+  color: #1abc9c;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #16a085;
+}
+
+.contact-form {
+  max-width: 600px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #529487;
+  border-radius: 5px;
   background-color: #1f1f1f;
   color: #e0e0e0;
+  font-size: 1rem;
 }
 
-.contact form button {
+.form-group textarea {
+  resize: vertical;
+}
+
+.contact-form button {
   background-color: #1abc9c;
   color: white;
   border: none;
-  padding: 1rem;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.contact form button:hover {
+.contact-form button:hover {
   background-color: #16a085;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem 0;
+.contact-form button:disabled {
+  background-color: #529487;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .contact-form,
+  .contact-info {
+    max-width: 100%;
+  }
+}
+
+/* Footer Section */
+.footer {
+  padding: 4rem 0 2rem;
   background-color: #121212;
   color: #e0e0e0;
   position: static !important;
 }
 
-.social-links a {
-  margin: 0 1rem;
-  color: #e0e0e0;
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1abc9c;
+}
+
+.footer-email {
+  display: block;
+  color: #1abc9c;
   text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-email:hover {
+  color: #f2f7f6;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: #1abc9c;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #1abc9c;
+  color: #eef1f1;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: #a0a0a0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ecf1f0;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #1abc9c;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button:hover {
+  background-color: #16a085;
+}
+
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #a0a0a0;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #529487;
+}
+
+@media (max-width: 768px) {
+  .footer .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    width: 100%;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-links {
+    text-align: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .legal-links {
+    justify-content: center;
+  }
 }
