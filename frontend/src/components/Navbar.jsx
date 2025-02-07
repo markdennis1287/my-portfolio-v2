@@ -13,23 +13,30 @@ const Navbar = () => {
     { label: "Blogs", id: "blogs" },
   ];
 
-  // Set the default active link to "Home" on page load
+  // Set the default active link to the logo on page load
   useEffect(() => {
-    const defaultActiveLink = document.querySelector('.nav-button[data-id="home"]');
-    if (defaultActiveLink) {
-      updateActiveBox(defaultActiveLink);
-      defaultActiveLink.classList.add("active");
-      lastActiveLink.current = defaultActiveLink;
+    const logoLink = document.querySelector(".logo a");
+    if (logoLink && activeBox.current) {
+      logoLink.classList.add("active");
+      lastActiveLink.current = logoLink;
+
+      // Get dimensions of the logo
+      const elementRect = logoLink.getBoundingClientRect();
+      const parentRect = logoLink.offsetParent.getBoundingClientRect();
+
+      // Set active box to match the logo's position
+      activeBox.current.style.top = `${elementRect.top - parentRect.top + elementRect.height / 2}px`;
+      activeBox.current.style.left = `${elementRect.left - parentRect.left + elementRect.width / 2}px`;
+      activeBox.current.style.width = `${elementRect.width}px`;
+      activeBox.current.style.height = `${elementRect.height}px`;
     }
   }, []);
 
   const scrollToSection = (id, event) => {
     event.preventDefault();
     if (window.location.pathname !== "/") {
-      // If not on the home page, navigate to the home page first
       window.location.href = `/#${id}`;
     } else {
-      // If on the home page, scroll to the section
       const section = document.getElementById(id);
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
@@ -50,6 +57,7 @@ const Navbar = () => {
     const elementRect = element.getBoundingClientRect();
     const parentRect = element.offsetParent.getBoundingClientRect();
 
+    // Center the active box on the element
     activeBox.current.style.top = `${elementRect.top - parentRect.top + elementRect.height / 2}px`;
     activeBox.current.style.left = `${elementRect.left - parentRect.left + elementRect.width / 2.5}px`;
     activeBox.current.style.width = `${elementRect.width}px`;
@@ -76,7 +84,7 @@ const Navbar = () => {
             href="#home"
             onClick={(e) => {
               scrollToSection("home", e);
-              updateActiveBox(e.currentTarget); // Update active box for logo link
+              updateActiveBox(e.currentTarget);
             }}
           >
             <img src="/logo.png" alt="Logo" />
@@ -86,8 +94,9 @@ const Navbar = () => {
         <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FiX /> : <FiMenu />}
         </div>
-        <div className="navbox">
-          <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+
+        <div className={`navbox ${menuOpen ? "open" : ""}`}>
+          <ul className="nav-links">
             {navItems.map(({ label, id }) => (
               <li key={id}>
                 <button
@@ -103,11 +112,12 @@ const Navbar = () => {
             <div className="active-box" ref={activeBox}></div>
           </ul>
         </div>
+
         <button
           className="contact-button"
           onClick={(e) => {
             scrollToSection("contact", e);
-            updateActiveBox(e.currentTarget); // Update active box for contact button
+            updateActiveBox(e.currentTarget);
           }}
         >
           Contact

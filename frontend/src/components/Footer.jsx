@@ -2,6 +2,15 @@ import React from "react";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
+  // Function to scroll to a section
+  const scrollToSection = (id, event) => {
+    event.preventDefault();
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -49,19 +58,29 @@ const Footer = () => {
           <h3>Site map</h3>
           <ul className="footer-links">
             <li>
-              <a href="#home">Home</a>
+              <a href="#home" onClick={(e) => scrollToSection("home", e)}>
+                Home
+              </a>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#about" onClick={(e) => scrollToSection("about", e)}>
+                About
+              </a>
             </li>
             <li>
-              <a href="#projects">Work</a>
+              <a href="#projects" onClick={(e) => scrollToSection("projects", e)}>
+                Work
+              </a>
             </li>
             <li>
-              <a href="#blogs">Blogs</a>
+              <a href="#blogs" onClick={(e) => scrollToSection("blogs", e)}>
+                Blogs
+              </a>
             </li>
             <li>
-              <a href="#contact">Contact</a>
+              <a href="#contact" onClick={(e) => scrollToSection("contact", e)}>
+                Contact
+              </a>
             </li>
           </ul>
         </div>
@@ -73,9 +92,12 @@ const Footer = () => {
             Have a project in mind? Let's discuss how we can work together to
             bring your ideas to life.
           </p>
-          <a href="#contact" className="cta-button">
-            Contact Me
-          </a>
+          <button
+            className="contact-button"
+            onClick={(e) => scrollToSection("contact", e)}
+          >
+            Contact
+          </button>
         </div>
 
         {/* Bottom Section: Copyright */}
