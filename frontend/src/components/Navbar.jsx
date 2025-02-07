@@ -5,6 +5,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const activeBox = useRef(null);
   const lastActiveLink = useRef(null);
+  const navContainer = useRef(null);
 
   const navItems = [
     { label: "Home", id: "home" },
@@ -13,22 +14,12 @@ const Navbar = () => {
     { label: "Blogs", id: "blogs" },
   ];
 
-  // Set the default active link to the logo on page load
   useEffect(() => {
     const logoLink = document.querySelector(".logo a");
     if (logoLink && activeBox.current) {
       logoLink.classList.add("active");
       lastActiveLink.current = logoLink;
-
-      // Get dimensions of the logo
-      const elementRect = logoLink.getBoundingClientRect();
-      const parentRect = logoLink.offsetParent.getBoundingClientRect();
-
-      // Set active box to match the logo's position
-      activeBox.current.style.top = `${elementRect.top - parentRect.top + elementRect.height / 2}px`;
-      activeBox.current.style.left = `${elementRect.left - parentRect.left + elementRect.width / 2}px`;
-      activeBox.current.style.width = `${elementRect.width}px`;
-      activeBox.current.style.height = `${elementRect.height}px`;
+      updateActiveBox(logoLink);
     }
   }, []);
 
@@ -50,21 +41,18 @@ const Navbar = () => {
     if (!activeBox.current || !element) return;
 
     lastActiveLink.current?.classList.remove("active");
-
     element.classList.add("active");
     lastActiveLink.current = element;
 
     const elementRect = element.getBoundingClientRect();
     const parentRect = element.offsetParent.getBoundingClientRect();
 
-    // Center the active box on the element
     activeBox.current.style.top = `${elementRect.top - parentRect.top + elementRect.height / 2}px`;
     activeBox.current.style.left = `${elementRect.left - parentRect.left + elementRect.width / 2.5}px`;
     activeBox.current.style.width = `${elementRect.width}px`;
     activeBox.current.style.height = `${elementRect.height}px`;
   };
 
-  // Recalculate the active box position on window resize
   useEffect(() => {
     const handleResize = () => {
       if (lastActiveLink.current) {
@@ -77,7 +65,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" ref={navContainer}>
       <div className="nav-container">
         <div className="logo">
           <a
@@ -96,7 +84,7 @@ const Navbar = () => {
         </div>
 
         <div className={`navbox ${menuOpen ? "open" : ""}`}>
-          <ul className="nav-links">
+          <ul className="navItems">
             {navItems.map(({ label, id }) => (
               <li key={id}>
                 <button

@@ -17,6 +17,11 @@ const BlogsPage = () => {
 
   return (
     <section id="blogs-page" className="blogs-page">
+      {/* Logo in the top-left corner (not a link) */}
+      <div className="logo-container">
+        <img src="/logo.png" alt="Logo" className="logo" />
+      </div>
+
       <div className="container">
         <h2 className="section-title">All Blogs</h2>
         <div className="blogs-grid">

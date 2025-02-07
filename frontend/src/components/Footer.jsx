@@ -102,7 +102,7 @@ const Footer = () => {
 
         {/* Bottom Section: Copyright */}
         <div className="footer-bottom">
-          &copy; {new Date().getFullYear()} Dennis Miring'u. All rights reserved.
+          &copy; 2025 Dennis Miring'u. All rights reserved.
         </div>
       </div>
     </footer>

@@ -16,8 +16,15 @@ const ProjectsPage = () => {
   }, []);
 
   return (
+    
     <section id="projects-page" className="projects-page">
+      {/* Logo in the top-left corner (not a link) */}
+      
+
       <div className="container">
+      <div className="logo-container">
+        <img src="/logo.png" alt="Logo" className="logo" />
+      </div>
         <h2 className="section-title">All Projects</h2>
         <div className="projects-grid">
           {projects.map((project) => (

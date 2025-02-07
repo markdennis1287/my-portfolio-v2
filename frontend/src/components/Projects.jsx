@@ -19,6 +19,11 @@ const Projects = () => {
     <section id="projects" className="projects">
       <div className="container">
         <h2 className="section-title">Projects</h2>
+        <p className="section-subtitle">
+          Here are some of the projects I've worked on.
+          <br></br>
+          Each project showcases my skills in web development, problem-solving, and creativity.
+        </p>
         <div className="projects-grid">
           {projects.slice(0, 3).map((project) => (
             <div key={project.id} className="project-card">
@@ -44,7 +49,7 @@ const Projects = () => {
           ))}
         </div>
         <Link to="/projects" className="see-more-button">
-          See More
+          See More Projects
         </Link>
       </div>
     </section>

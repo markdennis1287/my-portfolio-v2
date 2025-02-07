@@ -19,6 +19,11 @@ const Blogs = () => {
     <section id="blogs" className="blogs">
       <div className="container">
         <h2 className="section-title">Blogs</h2>
+        <p className="section-subtitle">
+          Explore my thoughts and insights on web development, programming, and technology.
+          <br></br>
+          Each blog post is a deep dive into topics I'm passionate about.
+        </p>
         <div className="blogs-grid">
           {blogs.slice(0, 3).map((blog) => (
             <div key={blog.id} className="blog-card">
@@ -41,7 +46,7 @@ const Blogs = () => {
           ))}
         </div>
         <Link to="/blogs" className="see-more-button">
-          See More
+          Read More Blogs
         </Link>
       </div>
     </section>

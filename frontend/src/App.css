@@ -64,7 +64,7 @@ body {
   display: flex;
 }
 
-.nav-links {
+.navItems {
   display: flex;
   align-items: center;
   list-style: none;
@@ -123,36 +123,55 @@ body {
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 738px) {
+@media (max-width: 768px) {
   .menu-icon {
     display: block; /* Show hamburger menu on smaller screens */
+    margin-right: 1rem; /* Add spacing for better alignment */
   }
 
   .navbox {
     display: none; /* Hide navbox by default on smaller screens */
     position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%;
-    background-color: rgba(18, 18, 18, 0.9);
+    top: 40px;
+    right: 1rem;
+    width: 120px; /* Adjust width for better fit */
+    background-color: rgba(18, 18, 18, 0.8);
     border: 2px solid #529487;
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
     padding: 1rem 0;
+    z-index: 1000; /* Ensure navbox is above other content */
   }
 
   .navbox.open {
     display: flex; /* Show navbox when menu is open */
   }
 
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
+  .navbox.open .navItems {
+    display: flex; /* Ensure nav-links are visible */
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center-align links */
+    background-color: transparent;
+    width: 100%; /* Take full width */
   }
 
-  .nav-links li {
-    margin: 10px 0;
+  .navbox.open .nav-links li {
+    margin: 2px 0; /* Add spacing between links */
+  }
+
+  .navbox.open .nav-button {
+    color: #e0e0e0; /* Ensure text color is visible */
+    font-size: 16px; /* Maintain font size */
+    padding: 0.5rem 1rem; /* Add padding for better clickability */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add pointer cursor */
+    transition: all 0.3s ease; /* Add transition for hover effect */
+  }
+
+  .navbox.open .nav-button:hover {
+    color: #1abc9c; /* Hover effect */
   }
 
   .contact-button {
@@ -507,6 +526,12 @@ body {
   color: #1abc9c;
 }
 
+.section-subtitle {
+  font-size: 1.25rem;
+  color: #a0a0a0;
+  margin-bottom: 3rem;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -603,6 +628,22 @@ body {
 .see-more-button:hover, .back-button:hover {
   background-color: #16a085;
 }
+
+
+/* Logo Container */
+.logo-container {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+}
+
+.logo-container .logo {
+  height: 36px; /* Adjust size as needed */
+  border-radius: 55px;
+  margin-left: 0.1rem;
+}
+
 
 /* Blogs Section */
 .blogs, .blogs-page {

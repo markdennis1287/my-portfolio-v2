@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,7 +14,18 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Navbar />
+      <AppContent />
+    </Router>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  return (
+    <>
+      {isHomePage && <Navbar />}
       <Routes>
         <Route path="/" element={
           <>
@@ -29,7 +40,7 @@ function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
