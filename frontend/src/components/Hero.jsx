@@ -3,7 +3,7 @@ import { FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaMapMarkerAlt } from 're
 
 const Hero = () => {
   const handleDownloadCV = () => {
-    const cvPath = '/Dennis_Miringu_CV.pdf';
+    const cvPath = '/Dennis_Miringu_Resume.pdf';
     const link = document.createElement('a');
     link.href = cvPath;
     link.download = 'Dennis_Miringu_Resume.pdf';
