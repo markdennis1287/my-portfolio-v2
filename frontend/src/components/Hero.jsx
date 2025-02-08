@@ -6,7 +6,7 @@ const Hero = () => {
     const cvPath = '/Dennis_Miringu_Resume.pdf';
     const link = document.createElement('a');
     link.href = cvPath;
-    link.download = 'Dennis_Miringu_Resume.pdf';
+    link.download = 'Dennis_Miringu_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
