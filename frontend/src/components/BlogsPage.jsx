@@ -8,7 +8,7 @@ const BlogsPage = () => {
 
   useEffect(() => {
     axios
-      .get('https://curly-couscous-pj74r5w5jw7q26q7g-5000.app.github.dev/api/blogs', {
+      .get('https://my-portfolio-v2-v9w0.onrender.com/api/blogs', {
         withCredentials: true,
       })
       .then((response) => setBlogs(response.data))

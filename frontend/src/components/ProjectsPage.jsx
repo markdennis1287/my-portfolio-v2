@@ -8,7 +8,7 @@ const ProjectsPage = () => {
 
   useEffect(() => {
     axios
-      .get('https://curly-couscous-pj74r5w5jw7q26q7g-5000.app.github.dev/api/projects', {
+      .get('https://my-portfolio-v2-v9w0.onrender.com/api/projects', {
         withCredentials: true,
       })
       .then((response) => setProjects(response.data))

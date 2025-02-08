@@ -20,7 +20,7 @@ const projects = [
     description: 'This was my first portfolio website that I built and my first project using React.',
     image: '/my-portfolio.png',
     githubLink: 'https://github.com/markdennis1287/my-portfolio',
-    liveLink: 'https://dennismiringu.vercel.app/',
+    liveLink: 'https://dennism.vercel.app/',
     tags: ['React', 'Node.js', ' Tailwind CSS'],
   },
   {

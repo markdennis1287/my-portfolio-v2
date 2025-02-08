@@ -5,9 +5,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
 
+const allowedOrigins = [
+  'https://curly-couscous-pj74r5w5jw7q26q7g-5173.app.github.dev', // GitHub Codespaces
+  'https://dennismiringu.vercel.app/' // Replace with your live frontend domain
+];
+
 app.use(
   cors({
-    origin: 'https://curly-couscous-pj74r5w5jw7q26q7g-5173.app.github.dev',
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
