@@ -14,22 +14,22 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_j6uj3ao", // Replace with your EmailJS service ID
-        "template_cr7yrp5", // Replace with your EmailJS template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        "cFqKGayUboSzDamIu" // Replace with your EmailJS public key
+        import.meta.env.VITE_EMAILJS_USER_ID
       )
       .then(
         (result) => {
           toast.success("Message sent successfully!", {
-            position: "top-center",
+            position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
           });
-          form.current.reset(); // Reset the form after successful submission
+          form.current.reset();
         },
         (error) => {
           toast.error("Failed to send message. Please try again.", {
@@ -62,19 +62,19 @@ const Contact = () => {
               media.
             </p>
             <div className="social-links">
-            <a href="https://github.com/markdennis1287" target="_blank" rel="noopener noreferrer">
-              <FaGithub className="social-icon" />
-            </a>
-            <a href="https://linkedin.com/in/dennis-miring-u/" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin className="social-icon" />
-            </a>
-            <a href="https://twitter.com/lucd_ville?s=08" target="_blank" rel="noopener noreferrer">
-              <FaTwitter className="social-icon" />
-            </a>
-            <a href="https://www.instagram.com/dps_mdm" target="_blank" rel="noopener noreferrer">
-              <FaInstagram className="social-icon" />
-            </a>
-          </div>
+              <a href="https://github.com/markdennis1287" target="_blank" rel="noopener noreferrer">
+                <FaGithub className="social-icon" />
+              </a>
+              <a href="https://linkedin.com/in/dennis-miring-u/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin className="social-icon" />
+              </a>
+              <a href="https://twitter.com/lucd_ville?s=08" target="_blank" rel="noopener noreferrer">
+                <FaTwitter className="social-icon" />
+              </a>
+              <a href="https://www.instagram.com/dps_mdm" target="_blank" rel="noopener noreferrer">
+                <FaInstagram className="social-icon" />
+              </a>
+            </div>
           </div>
 
           {/* Contact Form */}
