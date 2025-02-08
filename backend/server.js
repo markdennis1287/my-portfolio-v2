@@ -7,7 +7,7 @@ const app = express();
 
 const allowedOrigins = [
   'https://curly-couscous-pj74r5w5jw7q26q7g-5173.app.github.dev', // GitHub Codespaces
-  'https://dennismiringu.vercel.app/' // Replace with your live frontend domain
+  'https://dennismiringu.vercel.app' // Replace with your live frontend domain
 ];
 
 app.use(
